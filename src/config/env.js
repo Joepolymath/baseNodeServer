@@ -1,6 +1,8 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 // loading .env
 dotenv.config();
 
-export const { NODE_ENV, PORT, DBURL, HOST_NAME } = process.env;
+const { NODE_ENV, PORT, DBURL, HOST_NAME } = process.env;
+
+module.exports = { NODE_ENV, PORT, DBURL, HOST_NAME };

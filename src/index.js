@@ -1,9 +1,8 @@
-import app from './setup/express.js';
-import logging from './setup/logging.js';
-import database from './setup/database.js';
+const app = require('./setup/express.js');
+const logging = require('./setup/logging.js');
+const database = require('./setup/database.js');
 
-// logging();
+logging();
 database();
 
-export default app;
-// module.exports = app;
+module.exports = app;

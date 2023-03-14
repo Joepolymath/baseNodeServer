@@ -1,8 +1,7 @@
-import mongoose from 'mongoose';
-// import winston from 'winston/lib/winston/config';
-import Bluebird from 'bluebird';
-import { DBURL } from '../config/env.js';
-import chalk from 'chalk';
+const mongoose = require('mongoose');
+const Bluebird = require('bluebird');
+
+const { DBURL } = require('../config/env.js');
 
 const database = () => {
   let db;
@@ -18,25 +17,21 @@ const database = () => {
   mongoose.connect(DBURL, options);
   db = mongoose.connection;
   db.on('error', (err) => {
-    console.error(chalk.bold.red('Error connecting to database.'), err);
+    console.error('Error connecting to database.', err);
   });
   db.once('connected', () => {
-    console.log(chalk.bold.green('Database Connection is Successful'));
+    console.log('Database Connection is Successful');
   });
   db.once('disconnected', () => {
-    console.info(chalk.bold.yellow('Database Disconnected'));
+    console.info('Database Disconnected');
   });
 
   process.on('SIGINT', () => {
     mongoose.connection.close((err) => {
-      console.info(
-        chalk.bold.yellowBright(
-          'Database Connection Closed Due to App Termination'
-        )
-      );
+      console.info('Database Connection Closed Due to App Termination');
       process.exit(err ? 1 : 0);
     });
   });
 };
 
-export default database;
+module.exports = database;

@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-import debugLib from 'debug';
-import http from 'http';
-import chalk from 'chalk';
-import { PORT, NODE_ENV, HOST_NAME } from '../config/env.js';
-import app from '../index.js';
+const http = require('http');
+const debugLib = require('debug');
+const app = require('../index.js');
+const { PORT, NODE_ENV, HOST_NAME } = require('../config/env.js');
 
-const debug = debugLib('zillox:server');
+const debug = debugLib('<you app name>:server');
 
 // Normalize a port into a number, string or false.
 function normalizePort(val) {
@@ -62,12 +61,10 @@ const server = http.createServer(app);
 
 server.listen(port, (err) => {
   if (err) {
-    console.error(chalk.bold.red(`ERROR - Unable to start server.`));
+    console.error(`ERROR - Unable to start server.`);
   } else {
     console.info(
-      chalk.bold.yellow(
-        `INFO - Server Spitting 🔥 🔥 🔥 🔥 🔥 🔥 on - ${HOST_NAME}:${port} [${NODE_ENV}]`
-      )
+      `INFO - Server Spitting 🔥 🔥 🔥 🔥 🔥 🔥 on - ${HOST_NAME}:${port} [${NODE_ENV}]`
     );
   }
 });

@@ -1,5 +1,5 @@
-import 'express-async-errors';
-import winston from 'winston';
+require('express-async-errors');
+const winston = require('winston');
 
 const logging = () => {
   winston.exceptions.handle(
@@ -16,4 +16,4 @@ const logging = () => {
   });
 };
 
-export default logging;
+module.exports = logging;
